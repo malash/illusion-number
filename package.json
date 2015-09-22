@@ -1,0 +1,33 @@
+{
+  "name": "illusion-number",
+  "version": "0.1.0",
+  "description": "illusion number",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/malash/illusion-number.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "author": {
+    "name": "Malash",
+    "email": "i@malash.me",
+    "url": "https://malash.me/"
+  },
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp-livereload": "^3.8.0",
+    "autoprefixer": "^6.0.3",
+    "cssnano": "^3.0.2",
+    "cssnext": "^1.8.4",
+    "gulp": "^3.9.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-postcss": "^6.0.0",
+    "gulp-sass": "^2.0.4",
+    "postcss": "^5.0.5",
+    "winston": "^1.0.1"
+  }
+}

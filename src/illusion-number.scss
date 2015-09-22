@@ -1,0 +1,83 @@
+#illusion-number-res {
+    widows: 0;
+    height: 0;
+}
+
+$animationDuration: 1s;
+$animationPercent: 100%;
+
+.illusion-number {
+    font-size: 50px;
+    height: 5em;
+    width: 3em;
+    padding: 0.5em 1em;
+    background-color: #000000;
+    /* DEBUG */
+    // perspective: 500px;
+
+    .surfaces {
+        div {
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            position: absolute;
+            height: 5em;
+            width: 3em;
+            animation-duration: $animationDuration * ($animationPercent / 100%);
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            animation-timing-function: ease;
+        }
+    }
+    @for $number from 0 through 9 {
+        $next: ($number + 1) % 10;
+        &.illusion-number-#{$number} {
+            .surfaces {
+                @for $surface from 1 through 3 {
+                    .surface-a-#{$surface} {
+                        clip-path: url('#number-#{$number}-#{$surface}-out');
+                        animation-name: illusion-number-animation-a-#{$surface};
+                    }
+                    .surface-b-#{$surface} {
+                        clip-path: url('#number-#{$next}-#{$surface}-in');
+                        animation-name: illusion-number-animation-b-#{$surface};
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin illusion-number-animation($deg, $i) {
+    $lightColor: #dcdcdc;
+    $darkColor: #707070;
+    transform: rotateY($deg) translateZ(map-get(("1": 1.5em, "2": 0.5em, "3": -0.5em), #{$i}));
+    background-color: map-get(("0": #{$lightColor}, "-90deg": #{$darkColor}, "90deg": #{$lightColor}), #{$deg})
+}
+
+@for $number from 1 through 3 {
+    @keyframes illusion-number-animation-a-#{$number} {
+        0% {
+            @include illusion-number-animation(0, $number);
+        }
+        #{$animationPercent} {
+            @include illusion-number-animation(-90deg, $number);
+        }
+        100% {
+            @include illusion-number-animation(-90deg, $number);
+        }
+    }
+}
+
+@for $number from 1 through 3 {
+    @keyframes illusion-number-animation-b-#{$number} {
+        0% {
+            @include illusion-number-animation(90deg, $number);
+        }
+        #{$animationPercent} {
+            @include illusion-number-animation(0, $number);
+        }
+        100% {
+            @include illusion-number-animation(0, $number);
+        }
+    }
+}
