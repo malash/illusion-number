@@ -1,4 +1,4 @@
-#illusion-number-res {
+.illusion-number-res svg {
     widows: 0;
     height: 0;
 }
@@ -34,11 +34,11 @@ $animationPercent: 100%;
             .surfaces {
                 @for $surface from 1 through 3 {
                     .surface-a-#{$surface} {
-                        clip-path: url('#number-#{$number}-#{$surface}-out');
+                        clip-path: url('#illusion-number-#{$number}-#{$surface}-out');
                         animation-name: illusion-number-animation-a-#{$surface};
                     }
                     .surface-b-#{$surface} {
-                        clip-path: url('#number-#{$next}-#{$surface}-in');
+                        clip-path: url('#illusion-number-#{$next}-#{$surface}-in');
                         animation-name: illusion-number-animation-b-#{$surface};
                     }
                 }
