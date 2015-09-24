@@ -30,6 +30,9 @@ $tileHeight: 1em;
             animation-fill-mode: forwards;
             animation-timing-function: ease;
         }
+        .hidden {
+            visibility: hidden;
+        }
         @for $x from 0 through 4 {
             .tile-x-#{$x} {
                 top: $x * $tileHeight;
@@ -41,38 +44,42 @@ $tileHeight: 1em;
                 transform-origin: (1.5 - $y) * $tileWidth 0 0;
             }
         }
+        @mixin illusion-number-animation($deg, $tilePosition) {
+            $lightColor: #dcdcdc;
+            $darkColor: #707070;
+            transform: rotateY($deg) translateZ(map-get(("1": 1.5em, "2": 0.5em, "3": -0.5em), #{$tilePosition}));
+            background-color: map-get(("0": #{$lightColor}, "-90deg": #{$darkColor}, "90deg": #{$lightColor}), #{$deg})
+        }
 
-    }
-}
-
-@mixin illusion-number-animation($deg, $tilePosition) {
-    $lightColor: #dcdcdc;
-    $darkColor: #707070;
-    transform: rotateY($deg) translateZ(map-get(("1": 1.5em, "2": 0.5em, "3": -0.5em), #{$tilePosition}));
-    background-color: map-get(("0": #{$lightColor}, "-90deg": #{$darkColor}, "90deg": #{$lightColor}), #{$deg})
-}
-
-@for $tilePosition from 1 through 3 {
-    @keyframes illusion-number-animation-out-#{$tilePosition} {
-        0% {
-            @include illusion-number-animation(0, $tilePosition);
-        }
-        #{$animationPercent} {
-            @include illusion-number-animation(-90deg, $tilePosition);
-        }
-        100% {
-            @include illusion-number-animation(-90deg, $tilePosition);
-        }
-    }
-    @keyframes illusion-number-animation-in-#{$tilePosition} {
-        0% {
-            @include illusion-number-animation(90deg, $tilePosition);
-        }
-        #{$animationPercent} {
-            @include illusion-number-animation(0, $tilePosition);
-        }
-        100% {
-            @include illusion-number-animation(0, $tilePosition);
+        @for $tilePosition from 1 through 3 {
+            .illusion-number-animation-out-#{$tilePosition} {
+                animation-name: illusion-number-animation-out-#{$tilePosition};
+            }
+            @keyframes illusion-number-animation-out-#{$tilePosition} {
+                0% {
+                    @include illusion-number-animation(0, $tilePosition);
+                }
+                #{$animationPercent} {
+                    @include illusion-number-animation(-90deg, $tilePosition);
+                }
+                100% {
+                    @include illusion-number-animation(-90deg, $tilePosition);
+                }
+            }
+            .illusion-number-animation-in-#{$tilePosition} {
+                animation-name: illusion-number-animation-in-#{$tilePosition};
+            }
+            @keyframes illusion-number-animation-in-#{$tilePosition} {
+                0% {
+                    @include illusion-number-animation(90deg, $tilePosition);
+                }
+                #{$animationPercent} {
+                    @include illusion-number-animation(0, $tilePosition);
+                }
+                100% {
+                    @include illusion-number-animation(0, $tilePosition);
+                }
+            }
         }
     }
 }

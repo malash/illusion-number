@@ -10,7 +10,9 @@ var gulp = require('gulp'),
 gulp.task('css', function() {
     return gulp.src('src/*.scss')
         .pipe(sass({ indentWidth: 4 }).on('error', sass.logError))
-        .pipe(plugins.autoprefixer())
+        .pipe(plugins.autoprefixer({
+            browsers: ['last 2 version', '> 5%', 'ie 10', 'ff 10', 'opera 15', 'chrome 12']
+        }))
         .pipe(gulp.dest('dest/'))
         .pipe(plugins.minifyCss())
         .pipe(plugins.rename(function (path) {

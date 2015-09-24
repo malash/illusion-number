@@ -157,9 +157,9 @@
                             eleTile.classList.add('tile-x-' + x);
                             eleTile.classList.add('tile-y-' + y);
                             if (tilePosition === 0) {
-                                eleTile.style.visibility = 'hidden';
+                                eleTile.classList.add('hidden');
                             } else {
-                                eleTile.style['animation-name'] = 'illusion-number-animation-' + surface + '-' + tilePosition;
+                                eleTile.classList.add('illusion-number-animation-' + surface + '-' + tilePosition);
                             }
                             eleSurface.appendChild(eleTile);
                         }
