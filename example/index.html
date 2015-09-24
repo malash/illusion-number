@@ -12,10 +12,11 @@
     </div>
     <script src="../dest/illusion-number.js"></script>
     <script>
-        var number = -1;
+        var number = 9;
         setInterval(function() {
+            oldNumber = number;
             number = (number + 1) % 10;
-            IllusionNumber.play(document.getElementById('test'), { from: number });
+            IllusionNumber.play(document.getElementById('test'), { from: oldNumber, to: number });
         }, 1000)
     </script>
     <script src="http://localhost:35729/livereload.js"></script>

@@ -44,3 +44,4 @@ gulp.task('dev', function() {
 });
 
 gulp.task('build', ['css', 'js']);
+gulp.task('default', ['build']);

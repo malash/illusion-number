@@ -132,12 +132,12 @@
             if (isNaN(from)) {
                 throw new Error('IllusionNumber.play: options.from must be number');
             }
-            var to;
-            if (typeof options.to === 'undefined') {
+            var to = options.to;
+            if (typeof to === 'undefined') {
                 to = (from + 1) % 10;
             }
             if (isNaN(parseInt(to))) {
-                throw new Error('IllusionNumber.play: options.from must be number');
+                throw new Error('IllusionNumber.play: options.to must be number');
             }
             tilePositionsMap = getTilePositionsMap(from, to);
             var eleRoot = document.createElement('div');
