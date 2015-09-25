@@ -1,7 +1,7 @@
 .illusion-number {
     position: relative;
-    font-size: 50px;
-    padding: 0.5em 1em;
+    /* 2^(-1/2) = 0.70710678118655 */
+    padding: 0 0.70711em;
     width: 3em;
     height: 5em;
     overflow: hidden;
@@ -15,8 +15,8 @@
         .illusion-number .surface div {
             position: absolute;
             /* fix gap between tiles*/
-            width: 1.01em;
-            height: 1.01em;
+            width: 1.05em;
+            height: 1.05em;
             background-color: gray;
             margin: 0;
             padding: 0;

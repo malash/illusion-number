@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Illusion Number Datetime Example</title>
+    <link rel="stylesheet" href="../dest/illusion-number.css">
+</head>
+<body>
+    <style>
+        body {
+            background-color: #000000;
+            display: -webkit-box;
+            -webkit-box-orient: horizontal;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            display: -moz-box;
+            -moz-box-orient: horizontal;
+            -moz-box-pack: center;
+            -moz-box-align: center;
+            display: -o-box;
+            -o-box-orient: horizontal;
+            -o-box-pack: center;
+            -o-box-align: center;
+            display: -ms-box;
+            -ms-box-orient: horizontal;
+            -ms-box-pack: center;
+            -ms-box-align: center;
+            display: box;
+            box-orient: horizontal;
+            box-pack: center;
+            box-align: center;
+        }
+        .clearfix:before, .clearfix:after{
+            display: table;
+            content: " ";
+        }
+        .clearfix:after {
+            clear: both;
+        }
+        .datetime {
+            overflow: hidden;
+        }
+        .datetime .char {
+            float: left;
+            margin-top: 3rem;
+        }
+    </style>
+    <div class="datetime">
+        <div class="char" id="y1"></div>
+        <div class="char" id="y2"></div>
+        <div class="char" id="y3"></div>
+        <div class="char" id="y4"></div>
+        <div class="char" id="dot1"></div>
+        <div class="char" id="m1"></div>
+        <div class="char" id="m2"></div>
+        <div class="char" id="dot2"></div>
+        <div class="char" id="d1"></div>
+        <div class="char" id="d2"></div>
+        <div class="claerfix"></div>
+        <div class="char" id="blank"></div>
+        <div class="char" id="h1"></div>
+        <div class="char" id="h2"></div>
+        <div class="char" id="colon1"></div>
+        <div class="char" id="i1"></div>
+        <div class="char" id="i2"></div>
+        <div class="char" id="colon2"></div>
+        <div class="char" id="s1"></div>
+        <div class="char" id="s2"></div>
+    </div>
+    <script src="../dest/illusion-number.js"></script>
+    <script>
+        !(function(window, document){
+            window.requestAnimationFrame = function() {
+                return window.requestAnimationFrame ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame ||
+                    window.msRequestAnimationFrame ||
+                    window.oRequestAnimationFrame ||
+                    function(fn) {
+                        window.setTimeout(fn, 1000 / 60);
+                    }
+            }();
+            window.addEventListener('load', function() {
+                var fps = 30;
+                var now;
+                var then = Date.now();
+                var interval = 1000/fps;
+                var delta;
+                function draw() {
+                    window.requestAnimationFrame(draw);
+                    now = Date.now();
+                    delta = now - then;
+                    if (delta > interval) {
+                        then = now - (delta % interval);
+                        updateDateTime();
+                    }
+                }
+                draw();
+            });
+
+            IllusionNumber.setBitmap(':', [
+                [0, 0, 0],
+                [0, 1, 0],
+                [0, 0, 0],
+                [0, 1, 0],
+                [0, 0, 0]
+            ]);
+            IllusionNumber.setBitmap('.', [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 1, 0]
+            ]);
+            IllusionNumber.setBitmap(' ', [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]
+            ]);
+
+            var datetime = {};
+            datetime.y1 = datetime.y2 = datetime.y3 = datetime.y4 = datetime.m1 = datetime.m2 = datetime.d1 = datetime.d2 = datetime.h1 = datetime.h2 = datetime.i1 = datetime.i2 = datetime.s1 = datetime.s2 = '0';
+            datetime.dot1 = datetime.dot2 =  '.';
+            datetime.colon1 = datetime.colon2 = ':';
+            datetime.blank = ':';
+
+            var first = true;
+            function updateChar(char, newValue ,force) {
+                if (!newValue) {
+                    newValue = '0';
+                }
+                if (datetime[char] === newValue && !force && !first) {
+                    return;
+                }
+                IllusionNumber.play(document.getElementById(char), {
+                    from: datetime[char],
+                    to: newValue,
+                    size: '120px'
+                });
+                datetime[char] = newValue;
+            }
+
+            function format(str, len) {
+                while (str.length < len) {
+                    str = '0' + str;
+                }
+                return str;
+            }
+
+            function updateDateTime() {
+                var now = new Date();
+                var y = format(now.getFullYear().toString(), 4);
+                updateChar('y1', y[0]);
+                updateChar('y2', y[1]);
+                updateChar('y3', y[2]);
+                updateChar('y4', y[3]);
+                var m = format((now.getMonth() + 1).toString(), 2);
+                updateChar('m1', m[0]);
+                updateChar('m2', m[1]);
+                var d = format(now.getDate().toString(), 2);
+                updateChar('d1', d[0]);
+                updateChar('d2', d[1]);
+                var h = format(now.getHours().toString(), 2);
+                updateChar('h1', h[0]);
+                updateChar('h2', h[1]);
+                var i = format(now.getMinutes().toString(), 2);
+                updateChar('i1', i[0]);
+                updateChar('i2', i[1]);
+                var s = format(now.getSeconds().toString(), 2);
+                var secondPassed = (datetime['s2'] !== s[1]);
+                updateChar('s1', s[0]);
+                updateChar('s2', s[1]);
+                updateChar('dot1', '.', secondPassed);
+                updateChar('dot2', '.', secondPassed);
+                updateChar('blank', ' ', secondPassed);
+                updateChar('colon1', ':', secondPassed);
+                updateChar('colon2', ':', secondPassed);
+                first = false;
+            }
+
+        }(window, document));
+    </script>
+    <script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

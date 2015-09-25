@@ -2,15 +2,18 @@ $animationDuration: 1s;
 $animationPercent: 95%;
 $tileWidth: 1em;
 $tileHeight: 1em;
+$lightColor: #dcdcdc;
+$darkColor: #707070;
+$backgroundColor: #000000;
 
 .illusion-number {
     position: relative;
-    font-size: 50px;
-    padding: 0.5 * $tileHeight $tileHeight;
+    /* 2^(-1/2) = 0.70710678118655 */
+    padding: 0 0.70710678118655 * $tileWidth;
     width: 3 * $tileWidth;
     height: 5 * $tileHeight;
     overflow: hidden;
-    background-color: #000000;
+    background-color: $backgroundColor;
     /* DEBUG */
     /*perspective: 500px;*/
     .surface {
@@ -20,8 +23,8 @@ $tileHeight: 1em;
         div {
             position: absolute;
             /* fix gap between tiles*/
-            width: 1.01 * $tileWidth;
-            height: 1.01 * $tileHeight;
+            width: 1.05 * $tileWidth;
+            height: 1.05 * $tileHeight;
             background-color: gray;
             margin: 0;
             padding: 0;
@@ -45,8 +48,6 @@ $tileHeight: 1em;
             }
         }
         @mixin illusion-number-animation($deg, $tilePosition) {
-            $lightColor: #dcdcdc;
-            $darkColor: #707070;
             transform: rotateY($deg) translateZ(map-get(("1": 1.5em, "2": 0.5em, "3": -0.5em), #{$tilePosition}));
             background-color: map-get(("0": #{$lightColor}, "-90deg": #{$darkColor}, "90deg": #{$lightColor}), #{$deg})
         }

@@ -1,6 +1,6 @@
 !(function(document, window) {
 
-    var bitmap = {
+    var bitmaps = {
         '0': [
             [1, 1, 1],
             [1, 0, 1],
@@ -74,16 +74,16 @@
     };
 
     function getBitmap(number, x, y) {
-        if (bitmap[number] === undefined) {
+        if (bitmaps[number] === undefined) {
             return 0;
         }
-        if (bitmap[number][x] === undefined) {
+        if (bitmaps[number][x] === undefined) {
             return 0;
         }
-        if (bitmap[number][x][y] === undefined) {
+        if (bitmaps[number][x][y] === undefined) {
             return 0;
         }
-        return bitmap[number][x][y];
+        return bitmaps[number][x][y];
     }
 
     function getTilePositionsMap(from ,to) {
@@ -122,26 +122,53 @@
         return tilePositionsMap;
     }
 
+    function error(err) {
+        if (console && console.error) {
+            console.error(err);
+        }
+        return err;
+    }
+
     window.IllusionNumber = {
+        /**
+         *  Play illusion animation on element provided
+         * @method play
+         * @for IllusionNumber
+         * @param {element} ele - the DOM element to bind
+         * @param {object} options - play options
+         * @param {number | char} options.from - animation will transform from bitmap of options.from
+         * @param {number | char} options.to - animation will transform to bitmap of options.to
+         * @param {number | string} [options.size = 250px] - the canvas size (14px, 3em, 2rem, etc.)
+         */
         play: function(ele, options) {
             options = options || {};
             if (!ele) {
-                throw new Error('IllusionNumber.play: element must be set');
+                return error(new Error('IllusionNumber.play: ' + ele + ' is not an invalid element'));
             }
-            var from = parseInt(options.from);
-            if (isNaN(from)) {
-                throw new Error('IllusionNumber.play: options.from must be number');
+            var from = options.from;
+            if (typeof from === 'undefined' || typeof bitmaps[from] === 'undefined') {
+                return error(new Error('IllusionNumber.play: ' + from + ' is not an invalid \'from\' char'));
             }
             var to = options.to;
             if (typeof to === 'undefined') {
-                to = (from + 1) % 10;
+                to = (parseInt(from) + 1) % 10;
             }
-            if (isNaN(parseInt(to))) {
-                throw new Error('IllusionNumber.play: options.to must be number');
+            if (typeof bitmaps[to] === 'undefined') {
+                return error(new Error('IllusionNumber.play: ' + to + ' is not an invalid \'to\' char'));
+            }
+            var size = options.size || '250px';
+            if (parseFloat(size) == size) {
+                size = size + 'px';
+            }
+            var sizeResult;
+            if (/^((\d+)(\.\d+)?)([^\d]+)$/.test(size)) {
+                sizeResult = size.match(/^((\d+)(\.\d+)?)([^\d]+)$/);
+                size = (parseFloat(sizeResult[1]) / 6) + sizeResult[4];
             }
             tilePositionsMap = getTilePositionsMap(from, to);
             var eleRoot = document.createElement('div');
             eleRoot.classList.add('illusion-number');
+            eleRoot.style.fontSize = size;
             for (var indexSurface in ['in', 'out']) {
                 var surface = ['in', 'out'][indexSurface];
                 var eleSurface = document.createElement('div');
@@ -169,6 +196,23 @@
             }
             ele.innerHTML = '';
             ele.appendChild(eleRoot);
+        },
+        /**
+         * Set or override a custom bitmap
+         * @method setBitmap
+         * @for IllusionNumber
+         * @param {char} char - character to set
+         * @param {number[][]} bitmap - character bitmap, for example:
+            [
+                [1, 1, 1],
+                [1, 0, 1],
+                [1, 0, 1],
+                [1, 0, 1],
+                [1, 1, 1]
+            ]
+         */
+        setBitmap: function(char, bitmap) {
+            bitmaps[char] = bitmap;
         }
     };
 }(document, window));

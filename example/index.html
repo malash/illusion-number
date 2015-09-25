@@ -6,18 +6,17 @@
     <link rel="stylesheet" href="../dest/illusion-number.css">
 </head>
 <body>
-    <div id="test">
-        <div class="test1"></div>
-        <div class="test2"></div>
-    </div>
+    <div id="test"></div>
     <script src="../dest/illusion-number.js"></script>
     <script>
-        var number = 9;
-        setInterval(function() {
-            oldNumber = number;
-            number = (number + 1) % 10;
-            IllusionNumber.play(document.getElementById('test'), { from: oldNumber, to: number });
-        }, 1000)
+        !(function(window, document){
+            var number = 9;
+            window.setInterval(function() {
+                oldNumber = number;
+                number = (number + 1) % 10;
+                IllusionNumber.play(document.getElementById('test'), { from: oldNumber, to: number});
+            }, 1000);
+        }(window, document));
     </script>
     <script src="http://localhost:35729/livereload.js"></script>
 </body>
