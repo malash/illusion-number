@@ -15,17 +15,18 @@ $backgroundColor: #000000;
     overflow: hidden;
     background-color: $backgroundColor;
     /* DEBUG */
-    /*perspective: 500px;*/
-    .surface {
+    /* perspective: 500px; */
+    .illusion-number-tiles {
         position: absolute;
         width: 3 * $tileWidth;
         height: 5 * $tileHeight;
+        transform-style: preserve-3d;
         div {
             position: absolute;
+            backface-visibility: hidden;
             /* fix gap between tiles*/
             width: 1.05 * $tileWidth;
             height: 1.05 * $tileHeight;
-            background-color: gray;
             margin: 0;
             padding: 0;
             animation-duration: $animationDuration * ($animationPercent / 100%);
@@ -37,12 +38,12 @@ $backgroundColor: #000000;
             visibility: hidden;
         }
         @for $x from 0 through 4 {
-            .tile-x-#{$x} {
+            .illusion-number-tile-x-#{$x} {
                 top: $x * $tileHeight;
             }
         }
         @for $y from 0 through 2 {
-            .tile-y-#{$y} {
+            .illusion-number-tile-y-#{$y} {
                 left: $y * $tileWidth;
                 transform-origin: (1.5 - $y) * $tileWidth 0 0;
             }

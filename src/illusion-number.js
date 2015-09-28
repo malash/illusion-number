@@ -169,10 +169,10 @@
             var eleRoot = document.createElement('div');
             eleRoot.classList.add('illusion-number');
             eleRoot.style.fontSize = size;
+            var eleTiles = document.createElement('div');
+            eleTiles.classList.add('illusion-number-tiles');
             for (var indexSurface in ['in', 'out']) {
                 var surface = ['in', 'out'][indexSurface];
-                var eleSurface = document.createElement('div');
-                eleSurface.classList.add('surface');
                 for (var x = 0; x < 5; x++) {
                     for (var y = 0; y < 3; y++) {
                         var tilePositions = tilePositionsMap[surface][x][y];
@@ -180,20 +180,19 @@
                         for (var indexTilePosition in tilePositions) {
                             var tilePosition = tilePositions[indexTilePosition];
                             var eleTile = document.createElement('div');
-                            eleTile.classList.add('surface-' + surface + '-' + x + '-' + y);
-                            eleTile.classList.add('tile-x-' + x);
-                            eleTile.classList.add('tile-y-' + y);
+                            eleTile.classList.add('illusion-number-tile-x-' + x);
+                            eleTile.classList.add('illusion-number-tile-y-' + y);
                             if (tilePosition === 0) {
                                 eleTile.classList.add('hidden');
                             } else {
                                 eleTile.classList.add('illusion-number-animation-' + surface + '-' + tilePosition);
                             }
-                            eleSurface.appendChild(eleTile);
+                            eleTiles.appendChild(eleTile);
                         }
                     }
                 }
-                eleRoot.appendChild(eleSurface);
             }
+            eleRoot.appendChild(eleTiles);
             ele.innerHTML = '';
             ele.appendChild(eleRoot);
         },

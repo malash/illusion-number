@@ -7,17 +7,22 @@
     overflow: hidden;
     background-color: #000000;
     /* DEBUG */
-    /*perspective: 500px;*/ }
-    .illusion-number .surface {
+    /* perspective: 500px; */ }
+    .illusion-number .illusion-number-tiles {
         position: absolute;
         width: 3em;
-        height: 5em; }
-        .illusion-number .surface div {
+        height: 5em;
+        -webkit-transform-style: preserve-3d;
+           -moz-transform-style: preserve-3d;
+                transform-style: preserve-3d; }
+        .illusion-number .illusion-number-tiles div {
             position: absolute;
+            -webkit-backface-visibility: hidden;
+               -moz-backface-visibility: hidden;
+                    backface-visibility: hidden;
             /* fix gap between tiles*/
             width: 1.05em;
             height: 1.05em;
-            background-color: gray;
             margin: 0;
             padding: 0;
             -webkit-animation-duration: 0.95s;
@@ -32,34 +37,34 @@
             -webkit-animation-timing-function: ease;
                -moz-animation-timing-function: ease;
                     animation-timing-function: ease; }
-        .illusion-number .surface .hidden {
+        .illusion-number .illusion-number-tiles .hidden {
             visibility: hidden; }
-        .illusion-number .surface .tile-x-0 {
+        .illusion-number .illusion-number-tiles .illusion-number-tile-x-0 {
             top: 0em; }
-        .illusion-number .surface .tile-x-1 {
+        .illusion-number .illusion-number-tiles .illusion-number-tile-x-1 {
             top: 1em; }
-        .illusion-number .surface .tile-x-2 {
+        .illusion-number .illusion-number-tiles .illusion-number-tile-x-2 {
             top: 2em; }
-        .illusion-number .surface .tile-x-3 {
+        .illusion-number .illusion-number-tiles .illusion-number-tile-x-3 {
             top: 3em; }
-        .illusion-number .surface .tile-x-4 {
+        .illusion-number .illusion-number-tiles .illusion-number-tile-x-4 {
             top: 4em; }
-        .illusion-number .surface .tile-y-0 {
+        .illusion-number .illusion-number-tiles .illusion-number-tile-y-0 {
             left: 0em;
             -webkit-transform-origin: 1.5em 0 0;
                -moz-transform-origin: 1.5em 0 0;
                     transform-origin: 1.5em 0 0; }
-        .illusion-number .surface .tile-y-1 {
+        .illusion-number .illusion-number-tiles .illusion-number-tile-y-1 {
             left: 1em;
             -webkit-transform-origin: 0.5em 0 0;
                -moz-transform-origin: 0.5em 0 0;
                     transform-origin: 0.5em 0 0; }
-        .illusion-number .surface .tile-y-2 {
+        .illusion-number .illusion-number-tiles .illusion-number-tile-y-2 {
             left: 2em;
             -webkit-transform-origin: -0.5em 0 0;
                -moz-transform-origin: -0.5em 0 0;
                     transform-origin: -0.5em 0 0; }
-        .illusion-number .surface .illusion-number-animation-out-1 {
+        .illusion-number .illusion-number-tiles .illusion-number-animation-out-1 {
             -webkit-animation-name: illusion-number-animation-out-1;
                -moz-animation-name: illusion-number-animation-out-1;
                     animation-name: illusion-number-animation-out-1; }
@@ -108,7 +113,7 @@
            -moz-transform: rotateY(-90deg) translateZ(1.5em);
                 transform: rotateY(-90deg) translateZ(1.5em);
         background-color: #707070; } }
-        .illusion-number .surface .illusion-number-animation-in-1 {
+        .illusion-number .illusion-number-tiles .illusion-number-animation-in-1 {
             -webkit-animation-name: illusion-number-animation-in-1;
                -moz-animation-name: illusion-number-animation-in-1;
                     animation-name: illusion-number-animation-in-1; }
@@ -157,7 +162,7 @@
            -moz-transform: rotateY(0) translateZ(1.5em);
                 transform: rotateY(0) translateZ(1.5em);
         background-color: #dcdcdc; } }
-        .illusion-number .surface .illusion-number-animation-out-2 {
+        .illusion-number .illusion-number-tiles .illusion-number-animation-out-2 {
             -webkit-animation-name: illusion-number-animation-out-2;
                -moz-animation-name: illusion-number-animation-out-2;
                     animation-name: illusion-number-animation-out-2; }
@@ -206,7 +211,7 @@
            -moz-transform: rotateY(-90deg) translateZ(0.5em);
                 transform: rotateY(-90deg) translateZ(0.5em);
         background-color: #707070; } }
-        .illusion-number .surface .illusion-number-animation-in-2 {
+        .illusion-number .illusion-number-tiles .illusion-number-animation-in-2 {
             -webkit-animation-name: illusion-number-animation-in-2;
                -moz-animation-name: illusion-number-animation-in-2;
                     animation-name: illusion-number-animation-in-2; }
@@ -255,7 +260,7 @@
            -moz-transform: rotateY(0) translateZ(0.5em);
                 transform: rotateY(0) translateZ(0.5em);
         background-color: #dcdcdc; } }
-        .illusion-number .surface .illusion-number-animation-out-3 {
+        .illusion-number .illusion-number-tiles .illusion-number-animation-out-3 {
             -webkit-animation-name: illusion-number-animation-out-3;
                -moz-animation-name: illusion-number-animation-out-3;
                     animation-name: illusion-number-animation-out-3; }
@@ -304,7 +309,7 @@
            -moz-transform: rotateY(-90deg) translateZ(-0.5em);
                 transform: rotateY(-90deg) translateZ(-0.5em);
         background-color: #707070; } }
-        .illusion-number .surface .illusion-number-animation-in-3 {
+        .illusion-number .illusion-number-tiles .illusion-number-animation-in-3 {
             -webkit-animation-name: illusion-number-animation-in-3;
                -moz-animation-name: illusion-number-animation-in-3;
                     animation-name: illusion-number-animation-in-3; }
