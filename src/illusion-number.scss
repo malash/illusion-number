@@ -34,9 +34,6 @@ $backgroundColor: #000000;
             animation-fill-mode: forwards;
             animation-timing-function: ease;
         }
-        .hidden {
-            visibility: hidden;
-        }
         @for $x from 0 through 4 {
             .illusion-number-tile-x-#{$x} {
                 top: $x * $tileHeight;

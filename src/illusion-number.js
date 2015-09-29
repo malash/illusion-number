@@ -96,10 +96,8 @@
             tilePositionsMap['in'][x] = [];
             tilePositionsMap['out'][x] = [];
             for (y = 0; y < 3; y++) {
-                if (!getBitmap(from, x, y)) {
-                    tilePositionsMap['out'][x][y] = [0];
-                } else {
-                    tilePositionsMap['out'][x][y] = [];
+                tilePositionsMap['out'][x][y] = [];
+                if (getBitmap(from, x, y)) {
                     for (yComparison = 0; yComparison < 3; yComparison++) {
                         if (!getBitmap(to, x, yComparison - 1) && getBitmap(to, x, yComparison)) {
                             tilePositionsMap['out'][x][y].push(yComparison + 1);
@@ -107,10 +105,8 @@
                     }
                 }
 
-                if (!getBitmap(to, x, y)) {
-                    tilePositionsMap['in'][x][y] = [0];
-                } else {
-                    tilePositionsMap['in'][x][y] = [];
+                tilePositionsMap['in'][x][y] = [];
+                if (getBitmap(to, x, y)) {
                     for (yComparison = 2; yComparison >=0; yComparison--) {
                         if (!getBitmap(from, x, yComparison + 1) && getBitmap(from, x, yComparison)) {
                             tilePositionsMap['in'][x][y].push(3 - yComparison);
@@ -176,17 +172,12 @@
                 for (var x = 0; x < 5; x++) {
                     for (var y = 0; y < 3; y++) {
                         var tilePositions = tilePositionsMap[surface][x][y];
-                        tilePositions = tilePositions ? (Array.isArray(tilePositions) ? tilePositions : [tilePositions]) : [];
                         for (var indexTilePosition in tilePositions) {
                             var tilePosition = tilePositions[indexTilePosition];
                             var eleTile = document.createElement('div');
                             eleTile.classList.add('illusion-number-tile-x-' + x);
                             eleTile.classList.add('illusion-number-tile-y-' + y);
-                            if (tilePosition === 0) {
-                                eleTile.classList.add('hidden');
-                            } else {
-                                eleTile.classList.add('illusion-number-animation-' + surface + '-' + tilePosition);
-                            }
+                            eleTile.classList.add('illusion-number-animation-' + surface + '-' + tilePosition);    
                             eleTiles.appendChild(eleTile);
                         }
                     }

@@ -37,8 +37,6 @@
             -webkit-animation-timing-function: ease;
                -moz-animation-timing-function: ease;
                     animation-timing-function: ease; }
-        .illusion-number .illusion-number-tiles .hidden {
-            visibility: hidden; }
         .illusion-number .illusion-number-tiles .illusion-number-tile-x-0 {
             top: 0em; }
         .illusion-number .illusion-number-tiles .illusion-number-tile-x-1 {
