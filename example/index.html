@@ -14,7 +14,10 @@
             window.setInterval(function() {
                 oldNumber = number;
                 number = (number + 1) % 10;
-                IllusionNumber.play(document.getElementById('test'), { from: oldNumber, to: number});
+                IllusionNumber.play(document.getElementById('test'), {
+                    from: oldNumber,
+                    to: number
+                });
             }, 1000);
         }(window, document));
     </script>

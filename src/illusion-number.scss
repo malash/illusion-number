@@ -1,5 +1,4 @@
 $animationDuration: 1s;
-$animationPercent: 95%;
 $tileWidth: 1em;
 $tileHeight: 1em;
 $lightColor: #dcdcdc;
@@ -29,7 +28,7 @@ $backgroundColor: #000000;
             height: 1.05 * $tileHeight;
             margin: 0;
             padding: 0;
-            animation-duration: $animationDuration * ($animationPercent / 100%);
+            animation-duration: $animationDuration;
             animation-iteration-count: 1;
             animation-fill-mode: forwards;
             animation-timing-function: ease;
@@ -58,9 +57,6 @@ $backgroundColor: #000000;
                 0% {
                     @include illusion-number-animation(0, $tilePosition);
                 }
-                #{$animationPercent} {
-                    @include illusion-number-animation(-90deg, $tilePosition);
-                }
                 100% {
                     @include illusion-number-animation(-90deg, $tilePosition);
                 }
@@ -71,9 +67,6 @@ $backgroundColor: #000000;
             @keyframes illusion-number-animation-in-#{$tilePosition} {
                 0% {
                     @include illusion-number-animation(90deg, $tilePosition);
-                }
-                #{$animationPercent} {
-                    @include illusion-number-animation(0, $tilePosition);
                 }
                 100% {
                     @include illusion-number-animation(0, $tilePosition);

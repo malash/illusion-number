@@ -135,6 +135,7 @@
          * @param {number | char} options.from - animation will transform from bitmap of options.from
          * @param {number | char} options.to - animation will transform to bitmap of options.to
          * @param {number | string} [options.size = 250px] - the canvas size (14px, 3em, 2rem, etc.)
+         * @param {number} [options.animationDuration = 1] - the animation duration (sec, could be float), default to 1
          */
         play: function(ele, options) {
             options = options || {};
@@ -178,6 +179,9 @@
                             eleTile.classList.add('illusion-number-tile-x-' + x);
                             eleTile.classList.add('illusion-number-tile-y-' + y);
                             eleTile.classList.add('illusion-number-animation-' + surface + '-' + tilePosition);    
+                            if (options.animationDuration && !isNaN(parseFloat(options.animationDuration))) {
+                                eleTile.style.animationDuration = parseFloat(options.animationDuration) + 's';
+                            }
                             eleTiles.appendChild(eleTile);
                         }
                     }
