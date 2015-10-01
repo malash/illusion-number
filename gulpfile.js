@@ -13,22 +13,22 @@ gulp.task('css', function() {
         .pipe(plugins.autoprefixer({
             browsers: ['last 2 version', '> 5%', 'ie 10', 'ff 10', 'opera 15', 'chrome 12']
         }))
-        .pipe(gulp.dest('dest/'))
+        .pipe(gulp.dest('dist/'))
         .pipe(plugins.minifyCss())
         .pipe(plugins.rename(function (path) {
             path.extname = '.min.css';
         }))
-        .pipe(gulp.dest('dest/'));
+        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('js', function() {
     return gulp.src('src/*.js')
-        .pipe(gulp.dest('dest/'))
+        .pipe(gulp.dest('dist/'))
         .pipe(plugins.uglify())
         .pipe(plugins.rename(function (path) {
             path.extname = '.min.js';
         }))
-        .pipe(gulp.dest('dest/'));
+        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('dev', function() {
