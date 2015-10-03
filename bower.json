@@ -1,0 +1,35 @@
+{
+  "name": "illusion-number",
+  "version": "0.1.0",
+  "homepage": "https://github.com/malash/illusion-number",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/malash/illusion-number.git"
+  },
+  "description": "Illusion Number",
+  "main": [
+    "dist/illusion-number.min.css",
+    "dist/illusion-number.min.js",
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "illusion",
+    "number"
+  ],
+  "authors": [
+    {
+      "name": "Malash",
+      "email": "i@malash.me"
+    }
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
