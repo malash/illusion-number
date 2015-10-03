@@ -87,7 +87,7 @@ Default: `1`
 
 The animation duration defaults to 1 second. The type of value could be `number` or `float`.
 
-### IllusionNumber.play(char, bitmap)
+### IllusionNumber.setBitmap(char, bitmap)
 
 Set or override a bitmap.
 
