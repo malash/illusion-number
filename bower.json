@@ -9,7 +9,7 @@
   "description": "Illusion Number",
   "main": [
     "dist/illusion-number.min.css",
-    "dist/illusion-number.min.js",
+    "dist/illusion-number.min.js"
   ],
   "moduleType": [
     "globals"
