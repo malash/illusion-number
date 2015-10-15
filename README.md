@@ -124,6 +124,24 @@ Required: `true`
 
 Character's bitmap. The tile displays for value `1` and hides for value `0` at the same position in 2-dimensional array.
 
+## Development
+
+We use `gulp` as build system.
+
+For development:
+
+```bash
+npm install
+gulp dev
+```
+
+For build:
+
+```bash
+npm install
+gulp build
+```
+
 ## License
 
 The MIT License (MIT)
