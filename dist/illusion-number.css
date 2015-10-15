@@ -278,3 +278,7 @@
            -moz-transform: rotateY(0) translateZ(-0.5em);
                 transform: rotateY(0) translateZ(-0.5em);
         background-color: #dcdcdc; } }
+    .illusion-number .illusion-number-tiles-reverse div {
+        -webkit-animation-direction: reverse;
+           -moz-animation-direction: reverse;
+                animation-direction: reverse; }

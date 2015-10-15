@@ -87,6 +87,14 @@ Default: `1`
 
 The animation duration defaults to 1 second. The type of value could be `number` or `float`.
 
+#### options.reverse
+
+Type: `boolean`
+
+Default: `false`
+
+If `options.reverse` is `true`, the anamation direction will be reversed.
+
 ### IllusionNumber.setBitmap(char, bitmap)
 
 Set or override a bitmap.

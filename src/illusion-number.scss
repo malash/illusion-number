@@ -74,4 +74,7 @@ $backgroundColor: #000000;
             }
         }
     }
+    .illusion-number-tiles-reverse div {
+        animation-direction: reverse;
+    }
 }

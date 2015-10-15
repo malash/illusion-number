@@ -168,6 +168,9 @@
             eleRoot.style.fontSize = size;
             var eleTiles = document.createElement('div');
             eleTiles.classList.add('illusion-number-tiles');
+            if (options.reverse) {
+                eleTiles.classList.add('illusion-number-tiles-reverse');
+            }
             for (var indexSurface in ['in', 'out']) {
                 var surface = ['in', 'out'][indexSurface];
                 for (var x = 0; x < 5; x++) {
@@ -178,7 +181,7 @@
                             var eleTile = document.createElement('div');
                             eleTile.classList.add('illusion-number-tile-x-' + x);
                             eleTile.classList.add('illusion-number-tile-y-' + y);
-                            eleTile.classList.add('illusion-number-animation-' + surface + '-' + tilePosition);    
+                            eleTile.classList.add('illusion-number-animation-' + surface + '-' + tilePosition);
                             if (options.animationDuration && !isNaN(parseFloat(options.animationDuration))) {
                                 eleTile.style.animationDuration = parseFloat(options.animationDuration) + 's';
                             }
