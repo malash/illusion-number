@@ -26,8 +26,8 @@ $ bower install illusion-number
 Then include `.js` and `.css` files:
 
 ```html
-<link rel="stylesheet" href="/beep/bower_components/illusion-number/dest/illusion-number.css">
-<script src="/beep/bower_components/illusion-number/dest/illusion-number.js"></script>
+<link rel="stylesheet" href="/beep/bower_components/illusion-number/dist/illusion-number.min.css">
+<script src="/beep/bower_components/illusion-number/dist/illusion-number.min.js"></script>
 ```
 
 Put an empty `div` emelent to your HTML file:
